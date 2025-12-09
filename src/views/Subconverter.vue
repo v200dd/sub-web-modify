@@ -7,11 +7,8 @@
             <svg-icon class="gayhub" icon-class="github" style="float:left" @click="goToProject" />
             <svg-icon class="dianbao" icon-class="telegram" style="float:left;margin-left: 10px"
               @click="gotoTgChannel" />
-            <!--
-              <svg-icon class="bilibili" icon-class="bilibili" style="float:right;margin-left:10px"
-              @click="gotoBiliBili" /> -->
             <svg-icon class="youguan" icon-class="youtube" style="float:right;margin-left:10px" @click="gotoYouTuBe" />
-            <svg-icon class="channel" icon-class="telegram" style="float:right;margin-left: 10px"
+            <svg-icon class="channel" icon-icon="telegram" style="float:right;margin-left: 10px"
               @click="gotoTgChannel" />
             <div style="text-align:center;font-size:15px">订 阅 转 换</div>
           </div>
@@ -186,33 +183,11 @@
                   icon="el-icon-copy-document" :loading="loading3">从URL解析
                 </el-button>
               </el-form-item>
-              <el-form-item label-width="0px" style="text-align: center">
-                <el-button style="width: 250px;" type="success" icon="el-icon-video-play"
-                  @click="centerDialogVisible = true">视频教程
-                </el-button>
-              </el-form-item>
             </el-form>
           </el-container>
         </el-card>
       </el-col>
     </el-row>
-    <el-dialog title="请选择需要观看的视频教程" :visible.sync="centerDialogVisible" :show-close="false" width="40vh" top="30vh"
-      center>
-      <div label-width="0px" style="text-align: center">
-        <el-button style="width: 200px;" type="primary" icon="el-icon-video-play"
-          @click="gotoBasicVideo(); centerDialogVisible = false">基础视频教程
-        </el-button>
-      </div>
-      <div label-width="0px" style="text-align: center;margin: 3vh 0 2vh">
-        <el-button style="width: 200px;" type="danger" icon="el-icon-video-play"
-          @click="gotoAdvancedVideo(); centerDialogVisible = false">进阶视频教程
-        </el-button>
-      </div>
-      <div label-width="0px" style="text-align: center;margin: 3vh 0 2vh">
-        <el-button style="width: 200px;" type="warning" icon="el-icon-download" @click="toolsDown">代理工具集合
-        </el-button>
-      </div>
-    </el-dialog>
     <el-dialog :visible.sync="dialogUploadConfigVisible" :show-close="false" :close-on-click-modal="false"
       :close-on-press-escape="false" width="80%">
       <el-tabs v-model="activeName" type="card">
@@ -294,17 +269,17 @@ const filterConfigSample = process.env.VUE_APP_FILTER_CONFIG
 const defaultBackend = process.env.VUE_APP_SUBCONVERTER_DEFAULT_BACKEND
 const shortUrlBackend = process.env.VUE_APP_MYURLS_DEFAULT_BACKEND + '/create'
 const configUploadBackend = process.env.VUE_APP_CONFIG_UPLOAD_BACKEND + '/sub.php'
-const basicVideo = process.env.VUE_APP_BASIC_VIDEO
-const advancedVideo = process.env.VUE_APP_ADVANCED_VIDEO
+// const basicVideo = process.env.VUE_APP_BASIC_VIDEO // 已删除
+// const advancedVideo = process.env.VUE_APP_ADVANCED_VIDEO // 已删除
 const tgBotLink = process.env.VUE_APP_BOT_LINK
 const yglink = process.env.VUE_APP_YOUTUBE_LINK
 const bzlink = process.env.VUE_APP_BILIBILI_LINK
-const downld = 'http://' + window.location.host + '/download.html'
+// const downld = 'http://' + window.location.host + '/download.html' // 已删除
 export default {
   data() {
     return {
       backendVersion: "",
-      centerDialogVisible: false,
+      // centerDialogVisible: false, // 已删除
       activeName: 'first',
       // 是否为 PC 端
       isPC: true,
@@ -928,31 +903,31 @@ export default {
     gotoYouTuBe() {
       window.open(yglink);
     },
-    toolsDown() {
-      window.open(downld);
-    },
-    gotoBasicVideo() {
-      this.$alert("别忘了关注友善的肥羊哦！", {
-        type: "warning",
-        confirmButtonText: '确定',
-        customClass: 'msgbox',
-        showClose: false,
-      })
-        .then(() => {
-          window.open(basicVideo);
-        });
-    },
-    gotoAdvancedVideo() {
-      this.$alert("别忘了关注友善的肥羊哦！", {
-        type: "warning",
-        confirmButtonText: '确定',
-        customClass: 'msgbox',
-        showClose: false,
-      })
-        .then(() => {
-          window.open(advancedVideo);
-        });
-    },
+    // toolsDown() { // 已删除
+    //   window.open(downld);
+    // },
+    // gotoBasicVideo() { // 已删除
+    //   this.$alert("别忘了关注友善的肥羊哦！", {
+    //     type: "warning",
+    //     confirmButtonText: '确定',
+    //     customClass: 'msgbox',
+    //     showClose: false,
+    //   })
+    //     .then(() => {
+    //       window.open(basicVideo);
+    //     });
+    // },
+    // gotoAdvancedVideo() { // 已删除
+    //   this.$alert("别忘了关注友善的肥羊哦！", {
+    //     type: "warning",
+    //     confirmButtonText: '确定',
+    //     customClass: 'msgbox',
+    //     showClose: false,
+    //   })
+    //     .then(() => {
+    //       window.open(advancedVideo);
+    //     });
+    // },
     makeUrl() {
       if (this.form.sourceSubUrl === "" || this.form.clientType === "") {
         this.$message.error("订阅链接与客户端为必填项");
